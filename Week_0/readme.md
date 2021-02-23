@@ -16,7 +16,10 @@
 J2EE就是基于JAVA技术的一系列标准。
 J2EE是Java2企业版（Java 2Platform Enterprise Edition），核心是一组技术规范与指南，其中所包含的各个组件，服务架构和技术层次，都有共同的标准及规格，让各种依赖J2EE架构的不同平台之间，存在良好的兼容性。
 
+
 ------------
+
+
 
 #### J2EE的13种规范
 ##### 1. JDBC（Java Database Connectivity）
@@ -64,4 +67,31 @@ RMI / JNI：RMI 可以利用标准Java本机方法接口与现有的和原有的
 RMI / JDBC：RMI 利用标准JDBC 包与现有的关系型数据库连接
 
 RMI实现了与飞Java 语言的现有服务进行通信
+
+------------
+
+##### 5. Java IDL / CORBA （Common Object Request Broker Architecture）
+Java 接口定义语言，公用对象请求代理程序体系结构
+
+在Java IDL的支持下，开发人员可以将Java 和 CORBA 集成在一起。他们可以创建Java 对象并使之可在CORBA ORB中展开，或者他们呢还可以创建Java 类并作为和其它ORB 一起展开的CORBA 对象的客户。后一种方式提供了另外一种途径，通过它Java 可以被用于拉新的应用和旧的系统相集成
+
+CORBA 是面向对象标准的第一步，有了这个标准，软件的实现与工作环境对用户和开发者不再重要，可以把精力更多地放在本地系统的实现与优化上
+
+------------
+
+##### 6. JSP （JAVA Server Pages）
+JSP页面 = HTML+Java，其根本是一个简化的Servlet设计
+
+服务器在页面被客户端请求后，对这些Java 代码进行处理，然后将执行结果连同连同原HTML代码，生成的新HTML页面返回给客户端浏览器
+
+------------
+
+##### 7. Java Servlet
+Servlet 是一种小型的Java 程序，扩展了Web 服务器的功能，作为一种服务器的应用，当请求时开始执行。
+
+Servlet 提供的功能大多和 JSP 类似，不过，JSP 通常是大多数的HTML 代码中潜入少量的Java 代码。而Servlet 全部由Java 写成并生成 HTML
+
+
+
+
 
