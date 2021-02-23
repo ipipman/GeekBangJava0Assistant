@@ -9,7 +9,7 @@
 ------------
 
 ### （一）理论知识
-#### 什么是J2EE？
+### 什么是J2EE？
 在企业应用中，都有一些通用企业需求模块，如数据库连接、邮件服务、事务处理等，既然很多企业级应用都需要这些模块，一些大公司便开发了自己的通用模块服务，中间件。
 这样一来，就避免了重复开发、开发周期、代码可靠性差等问题。但是，各公司的中间件不兼容的问题就出现了，用户无法将他们组装在一起为自己服务，于是“标准”就应运而生了。
 
@@ -19,11 +19,11 @@ J2EE是Java2企业版（Java 2Platform Enterprise Edition），核心是一组�
 
 ------------
 
-#### J2EE的13种规范
+### J2EE的13种规范
 [![https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg")](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg")
 
 
-##### 1. JDBC（Java Database Connectivity）
+#### 1. JDBC（Java Database Connectivity）
 JDBC 是以统一方式访问数据库的API
 
 它提供了独立于平台的数据库访问，也就是说，有了JDBC API，我们就不必为了访问Oracle数据库专门写一个程序，而为了访问Mysql数据库又单独写一个程序等等。
@@ -35,7 +35,7 @@ JDBC 是以统一方式访问数据库的API
 
 ------------
 
-##### 2. JNDI（JavaName and Directory Interface）
+#### 2. JNDI（JavaName and Directory Interface）
 JNDI是一组在Java应用中访问命名和目录服务的API
 
 命名服务将名称和对象联系起来，我们即可用名称访问对象，JNDI 允许吧名称同Java 对象或资源关联起来，建立逻辑关联，而不必知道对象或资源的物理ID。
@@ -48,7 +48,7 @@ JNDI和JDBC类似，都是构建在抽象层上
 
 ------------
 
-##### 3. EJB （Enterprise Java Bean）
+#### 3. EJB （Enterprise Java Bean）
 J2EE将业务逻辑从客户端软件中抽取出来，分装在一个组建中。
 
 这个组件运行在一个独立的服务上，客户端软件通过网络调用组件提供的服务以实现业务逻辑，而客户端软件功能只负责发送调用请求和显示处理结果。
@@ -57,7 +57,7 @@ J2EE将业务逻辑从客户端软件中抽取出来，分装在一个组建中�
 
 ------------
 
-##### 4. RMI （Remote Method Invoke）
+#### 4. RMI （Remote Method Invoke）
 是一组用户开发分布式应用程序的API
 
 这一协议调用远程对象上的方法使用了序列化的方式，在客户端与服务端之间传递数据。使得原先在同一操作系统方法调用，变成了不同操作系统之间程序的方法调用。即RMI 机制实现了程序组件在不同操作系统之间通信。
@@ -71,7 +71,7 @@ RMI实现了与飞Java 语言的现有服务进行通信
 
 ------------
 
-##### 5. Java IDL / CORBA （Common Object Request Broker Architecture）
+#### 5. Java IDL / CORBA （Common Object Request Broker Architecture）
 Java 接口定义语言，公用对象请求代理程序体系结构
 
 在Java IDL的支持下，开发人员可以将Java 和 CORBA 集成在一起。他们可以创建Java 对象并使之可在CORBA ORB中展开，或者他们呢还可以创建Java 类并作为和其它ORB 一起展开的CORBA 对象的客户。后一种方式提供了另外一种途径，通过它Java 可以被用于拉新的应用和旧的系统相集成
@@ -80,21 +80,21 @@ CORBA 是面向对象标准的第一步，有了这个标准，软件的实现�
 
 ------------
 
-##### 6. JSP （JAVA Server Pages）
+#### 6. JSP （JAVA Server Pages）
 JSP页面 = HTML+Java，其根本是一个简化的Servlet设计
 
 服务器在页面被客户端请求后，对这些Java 代码进行处理，然后将执行结果连同连同原HTML代码，生成的新HTML页面返回给客户端浏览器
 
 ------------
 
-##### 7. Java Servlet
+#### 7. Java Servlet
 Servlet 是一种小型的Java 程序，扩展了Web 服务器的功能，作为一种服务器的应用，当请求时开始执行。
 
 Servlet 提供的功能大多和 JSP 类似，不过，JSP 通常是大多数的HTML 代码中潜入少量的Java 代码。而Servlet 全部由Java 写成并生成 HTML
 
 ------------
 
-##### 8. XML
+#### 8. XML
 XML 是一个用来定义其它标记语言的语言，可用做数据共享。
 
 XML 的发展和Java 是相互独立的。
@@ -102,7 +102,7 @@ XML 的发展和Java 是相互独立的。
 
 ------------
 
-##### 9. JMS （Java Message Service）
+#### 9. JMS （Java Message Service）
 它是一种与厂商无关的API，用来访问消息收发系统消息
 
 它类似于JDBC，JDBC是可以用来访问不同关系数据的API，而JMS 则提供同样与厂商无关的访问消息收发服务的方法，这样就可以通过消息收发服务实现从一个JMS 客户机向另一个JMS 客户端机发送消息。
@@ -111,7 +111,7 @@ JMS 是Java 平台上有关面向消息中间件的技术规范
 
 ------------
 
-##### 10. JTA （Java Transaction API）
+#### 10. JTA （Java Transaction API）
 定义了一种标准API，应用程序由此可以访问各种事务监控
 
 它允许应用程序执行分布式事务处理，在两个或多个网络计算机资源上访问并且更新数据，JTA 和 JTS 为J2EE 平台提供了分布式服务。
@@ -119,28 +119,26 @@ JTA 事务比JDBC 事务更强大，一个JTA 事务可以有多个参与者，�
 
 ------------
 
-##### 11. JTS （Java Transaction Service）
+#### 11. JTS （Java Transaction Service）
 JTS 是 CORBA OTS 事务监控器的一个基本实现
 
 JTS 指定了一个事务管理器的实现（Transaction Manager），这个管理器在一个高级别上支持JTA 规范，并且在一个低级别上实现了OMGOTS 规范的Java 映射。
 
 一个JTS 事务管理器为应用服务器、资源管理器、独立的应用和通信资源管理器提供事务服务
 
-
 ------------
 
-##### 12. JavaMail
+#### 12. JavaMail
 用于访问邮件服务器的API，提供了一套邮件服务器的抽象类
 
 ------------
 
-##### 13. JAF（Java Beans Activation Framework）
+#### 13. JAF（Java Beans Activation Framework）
 JAF 是一个专用的数据处理框架
 
 它用于封装数据，并为应用程序提供访问和操作数据的接口，也就是说JAF 让Java 程序知道怎么对一个数据源进行查看、编辑、打印等
 
 JavaMail利用JAF 来处理MIME 编码的邮件附件
-
 
 ------------
 
