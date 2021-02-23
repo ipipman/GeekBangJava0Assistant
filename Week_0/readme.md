@@ -19,9 +19,10 @@ J2EE是Java2企业版（Java 2Platform Enterprise Edition），核心是一组�
 
 ------------
 
-
-
 #### J2EE的13种规范
+[![https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg")](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1311614079083_.pic.jpg")
+
+
 ##### 1. JDBC（Java Database Connectivity）
 JDBC 是以统一方式访问数据库的API
 
