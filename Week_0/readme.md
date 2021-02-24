@@ -153,3 +153,13 @@ JSP是一种Java servlet，主要用于实现Java web应用程序的用户界面
 JSP通过网页表单获取用户输入数据、访问数据库及其他数据源，然后动态地创建网页。
 
 JSP标签有多种功能，比如访问数据库、记录用户选择信息、访问JavaBeans组件等，还可以在不同的网页中传递控制信息和共享信息。
+
+
+------------
+
+#### JSP 开发环境搭建 - 配置Java开发工具（JDK）
+这一步涉及Java SDK的下载和PATH环境变量的配置。
+
+您可以从Oracle公司的Java页面中下载SDK：[Java SE Downloads ](https://www.oracle.com/java/technologies/javase-downloads.html "Java SE Downloads ")
+
+
