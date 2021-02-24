@@ -162,4 +162,12 @@ JSP标签有多种功能，比如访问数据库、记录用户选择信息、�
 
 您可以从Oracle公司的Java页面中下载SDK：[Java SE Downloads ](https://www.oracle.com/java/technologies/javase-downloads.html "Java SE Downloads ")
 
+------------
 
+
+#### JSP 开发环境搭建 - 设置Web服务器：Tomcat
+目前，市场上有很多支持JSP和Servlets开发的Web服务器。他们中的一些可以免费下载和使用，Tomcat就是其中之一。
+
+Apache Tomcat是一个开源软件，可作为独立的服务器来运行JSP和Servlets，也可以集成在 Apache Web Server中。以下是Tomcat的配置方法：
+
+下载最新版本的Tomcat：[http://tomcat.apache.org/](http://tomcat.apache.org/ "http://tomcat.apache.org/")
