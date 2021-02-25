@@ -192,9 +192,9 @@ Servlet 生命周期可被定义为**从创建直到毁灭的整个过程**。�
 
 当用户调用一个 Servlet 时，就会创建一个 Servlet 实例，**每一个用户请求都会产生一个新的线程**，适当的时候移交给 doGet 或 doPost 方法。init() 方法简单地创建或加载一些数据，这些数据将被用于 Servlet 的整个生命周期。
 ```java
-    public void init() throws ServletException {
+public void init() throws ServletException {
       // 初始化代码...
-    }
+}
 ```
 
 ------------
@@ -206,10 +206,10 @@ service() 方法是执行实际任务的主要方法。Servlet 容器（即 Web 
 
 service() 方法由容器调用，service 方法在适当的时候调用 doGet、doPost、doPut、doDelete 等方法。所以，您**不用对 service() 方法做任何动作，您只需要根据来自客户端的请求类型来重载 doGet() 或 doPost() 即可**。
 ```java
-    public void service(ServletRequest request, 
+public void service(ServletRequest request, 
                         ServletResponse response) 
           throws ServletException, IOException{
-    }
+}
 ```
 
 ------------
@@ -217,11 +217,11 @@ service() 方法由容器调用，service 方法在适当的时候调用 doGet�
 #### doGet() 方法
 GET 请求来自于一个 URL 的正常请求，或者来自于一个未指定 METHOD 的 HTML 表单，它由 doGet() 方法处理
 ```java
-    public void doGet(HttpServletRequest request,
+public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
         throws ServletException, IOException {
         // Servlet 代码
-    }
+}
 
 ```
 
@@ -230,11 +230,11 @@ GET 请求来自于一个 URL 的正常请求，或者来自于一个未指定 M
 #### doPost () 方法
 POST 请求来自于一个特别指定了 METHOD 为 POST 的 HTML 表单，它由 doPost() 方法处理。
 ```java
-    public void doPost(HttpServletRequest request,
+public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
         throws ServletException, IOException {
         // Servlet 代码
-    }
+}
 ```
 
 ------------
@@ -245,9 +245,9 @@ POST 请求来自于一个特别指定了 METHOD 为 POST 的 HTML 表单，它�
 
 在调用 destroy() 方法之后，**servlet 对象被标记为垃圾回收**
 ```java
-      public void destroy() {
-        // 终止化代码...
-      }
+public void destroy() {
+	// 终止化代码...
+}
 ```
 
 

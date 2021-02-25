@@ -4,4 +4,17 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
+
+    <!--  Testing From Servlet  -->
+    <servlet>
+        <servlet-name>FormServlet</servlet-name>
+        <servlet-class>com.ipman.preview.servlet.FormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormServlet</servlet-name>
+        <url-pattern>/FormServlet</url-pattern>
+    </servlet-mapping>
+
+
+
 </web-app>

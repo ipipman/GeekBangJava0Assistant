@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  */
 
 // WebServlet注解表示这是一个Servlet，并映射到地址/:
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/hello")
 // 一个Servlet总是继承自HttpServlet，然后覆写doGet()或doPost()方法
 public class HelloServlet extends HttpServlet {
 
