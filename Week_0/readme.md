@@ -174,7 +174,7 @@ Java Servlet 就像任何其他的 Java 类一样已经被创建和编译。在�
 
 ------------
 
-#### Servlet 生命周期
+### Servlet 生命周期
 
 Servlet 生命周期可被定义为**从创建直到毁灭的整个过程**。以下是 Servlet 遵循的过程
 
@@ -183,7 +183,9 @@ Servlet 生命周期可被定义为**从创建直到毁灭的整个过程**。�
 > - **Servlet 通过调用 destroy() 方法终止（结束）**
 > - **最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的**
 
-**init() 方法**
+------------
+
+#### init() 方法
 **init 方法被设计成只调用一次**。它在第一次**创建 Servlet 时被调用**，**在后续每次用户请求时不再调用**。因此，**它是用于一次性初始化**，就像 Applet 的 init 方法一样。
 
 **Servlet 创建于用户第一次调用对应于该 Servlet 的 URL 时**，但是您也可以指定 Servlet 在服务器第一次启动时被加载。
@@ -194,7 +196,9 @@ Servlet 生命周期可被定义为**从创建直到毁灭的整个过程**。�
       // 初始化代码...
     }
 
-**service() 方法**
+------------
+
+#### service() 方法
 service() 方法是执行实际任务的主要方法。Servlet 容器（即 Web 服务器）调用 service() 方法来处理来自客户端（浏览器）的请求，并把格式化的响应写回给客户端。
 
 每次服务器接收到一个 Servlet 请求时，**服务器会产生一个新的线程并调用服务**。service() 方法检查 HTTP 请求类型（GET、POST、PUT、DELETE 等），并在适当的时候调用 doGet、doPost、doPut，doDelete 等方法。
@@ -207,6 +211,162 @@ service() 方法由容器调用，service 方法在适当的时候调用 doGet�
     }
 
 ------------
+
+#### doGet() 方法
+GET 请求来自于一个 URL 的正常请求，或者来自于一个未指定 METHOD 的 HTML 表单，它由 doGet() 方法处理
+
+    public void doGet(HttpServletRequest request,
+                      HttpServletResponse response)
+        throws ServletException, IOException {
+        // Servlet 代码
+    }
+
+------------
+
+#### doPost () 方法
+POST 请求来自于一个特别指定了 METHOD 为 POST 的 HTML 表单，它由 doPost() 方法处理。
+
+    public void doPost(HttpServletRequest request,
+                       HttpServletResponse response)
+        throws ServletException, IOException {
+        // Servlet 代码
+    }
+
+------------
+
+#### destroy  () 方法
+
+**destroy() 方法只会被调用一次**，在 **Servlet 生命周期结束时被调用**。destroy() 方法可以让您的 Servlet 关闭数据库连接、停止后台线程、把 Cookie 列表或点击计数器写入到磁盘，并执行其他类似的清理活动。
+
+在调用 destroy() 方法之后，**servlet 对象被标记为垃圾回收**
+
+      public void destroy() {
+        // 终止化代码...
+      }
+
+------------
+
+### Servlet 实例
+#### （一）JavaEE提供了Servlet API，我们使用Servlet API编写自己的Servlet来处理HTTP请求，Web服务器实现Servlet API接口
+```java
+
+// WebServlet注解表示这是一个Servlet，并映射到地址/:
+@WebServlet(urlPatterns = "/")
+// 一个Servlet总是继承自HttpServlet，然后覆写doGet()或doPost()方法
+public class HelloServlet extends HttpServlet {
+
+    // init 方法被设计成只调用一次。它在第一次创建 Servlet 时被调用，在后续每次用户请求时不再调用。
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        System.out.println("Servlet 初始化");
+    }
+
+    // 每次服务器接收到一个 Servlet 请求时，服务器会产生一个新的线程并调用服务。
+    @Override
+    public void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException{
+        HttpServletRequest request = (HttpServletRequest) var1;
+        System.out.println("Servlet Request Method = " + request.getMethod());
+    }
+
+    // doGet()方法传入了HttpServletRequest和HttpServletResponse两个对象，分别代表HTTP请求和响应
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // 设置响应类型:
+        resp.setContentType("text/html");
+        // 获取输出流:
+        PrintWriter pw = resp.getWriter();
+        // 写入响应:
+        pw.write("<h1>Hello, world!</h1>");
+        // 最后不要忘记flush强制输出:
+        pw.flush();
+    }
+
+    // destroy() 方法只会被调用一次，在 Servlet 生命周期结束时被调用
+    @Override
+    public void destroy() {
+        System.out.println("Servlet 销毁");
+    }
+}
+
+```
+
+#### （二）Servlet API是一个jar包，我们需要通过Maven来引入它，才能正常编译。编写pom.xml文件如下
+
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>week0-user-admin-sample</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--  打包类型不是jar，而是war，表示Java Web Application Archive  -->
+    <packaging>war</packaging>
+
+    <build>
+        <finalName>hello</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.7</version>
+                <configuration>
+                    <webAppSourceDirectory>${project.build.directory}/${pom.artifactId}-${pom.version}
+                    </webAppSourceDirectory>
+                    <contextPath>/</contextPath>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>8</java.version>
+    </properties>
+
+    <dependencies>
+        <!--   Servlet API   -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <!--  <scope>指定为provided，表示编译时使用，但不会打包到.war文件中，因为运行期Web服务器本身已经提供了Servlet API相关的jar包 -->
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>
+```
+
+#### （三）在工程目录下创建一个web.xml描述文件，放到src/main/webapp/WEB-INF目录下（固定目录结构，不要修改路径，注意大小写）。文件内容可以固定如下：
+
+    <!DOCTYPE web-app PUBLIC
+     "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+     "http://java.sun.com/dtd/web-app_2_3.dtd">
+    <web-app>
+      <display-name>Archetype Created Web Application</display-name>
+    </web-app>
+
+#### （四）准备Tomcat服务器，在IDEA中配置启动环境
+下载最新版本的Tomcat：[http://tomcat.apache.org/](http://tomcat.apache.org/ "http://tomcat.apache.org/")
+
+[![https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1351614243759_.pic.jpg](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1351614243759_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1351614243759_.pic.jpg")](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1351614243759_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1351614243759_.pic.jpg")
+
+
+启动Tomcat，进行测试 ...
+
+------------
+
 
 ### （三）JSP
 #### 什么是Java Server Pages?
