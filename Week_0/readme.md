@@ -143,7 +143,6 @@ JavaMail利用JAF 来处理MIME 编码的邮件附件
 ------------
 
 
-
 ### （二）JSP
 #### 什么是Java Server Pages?
 JSP全称Java Server Pages，是一种动态网页开发技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以<%开头以%>结束。
