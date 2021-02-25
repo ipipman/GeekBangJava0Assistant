@@ -142,8 +142,21 @@ JavaMail利用JAF 来处理MIME 编码的邮件附件
 
 ------------
 
+### （二）Servlet
+#### Servlet 是什么？
 
-### （二）JSP
+Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。
+
+使用 Servlet，您可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态创建网页。
+
+[![https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1341614237301_.pic.jpg](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1341614237301_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1341614237301_.pic.jpg")](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1341614237301_.pic.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1341614237301_.pic.jpg")
+
+
+
+
+------------
+
+### （三）JSP
 #### 什么是Java Server Pages?
 JSP全称Java Server Pages，是一种动态网页开发技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以<%开头以%>结束。
 
@@ -163,10 +176,12 @@ JSP标签有多种功能，比如访问数据库、记录用户选择信息、�
 
 ------------
 
-
 #### JSP 开发环境搭建 - 设置Web服务器：Tomcat
 目前，市场上有很多支持JSP和Servlets开发的Web服务器。他们中的一些可以免费下载和使用，Tomcat就是其中之一。
 
 Apache Tomcat是一个开源软件，可作为独立的服务器来运行JSP和Servlets，也可以集成在 Apache Web Server中。以下是Tomcat的配置方法：
 
 下载最新版本的Tomcat：[http://tomcat.apache.org/](http://tomcat.apache.org/ "http://tomcat.apache.org/")
+
+
+

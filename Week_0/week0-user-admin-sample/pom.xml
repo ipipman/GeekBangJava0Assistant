@@ -12,6 +12,8 @@
     <packaging>war</packaging>
 
     <build>
+        <finalName>hello</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
