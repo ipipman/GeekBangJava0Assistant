@@ -163,6 +163,12 @@ JavaMail利用JAF 来处理MIME 编码的邮件附件
 
 ------------
 
+#### Servlet 版本
+
+[![https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1371614255303_.pic_hd.jpg](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1371614255303_.pic_hd.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1371614255303_.pic_hd.jpg")](https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1371614255303_.pic_hd.jpg "https://ipman-blog-1304583208.cos.ap-nanjing.myqcloud.com/geekbang/1371614255303_.pic_hd.jpg")
+
+------------
+
 #### Servlet 包
 
 **Java Servlet 是运行在带有支持 Java Servlet 规范的解释器的 web 服务器上的 Java 类**
