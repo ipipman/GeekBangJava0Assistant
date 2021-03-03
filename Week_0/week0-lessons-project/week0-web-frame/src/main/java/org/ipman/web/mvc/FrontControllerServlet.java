@@ -4,7 +4,6 @@ import org.apache.commons.lang.StringUtils;
 import org.ipman.web.mvc.controller.Controller;
 import org.ipman.web.mvc.controller.PageController;
 import org.ipman.web.mvc.controller.RestController;
-import sun.jvm.hotspot.jdi.MethodImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -125,11 +124,8 @@ public class FrontControllerServlet extends HttpServlet {
                 }
                 // PageController
                 if (controller instanceof PageController){
-
-//                    Class<?> controllerClass = controller.getClass();
                     Method controllerMethod = handlerMethodInfo.getHandlerMethod();
                     String viewPath = (String) controllerMethod.invoke(controller, request, response);
-
 
                     // 页面请求 forward
                     ServletContext servletContext = request.getServletContext();
@@ -142,7 +138,6 @@ public class FrontControllerServlet extends HttpServlet {
                 } else if (controller instanceof RestController){
                     // TODO
                 }
-
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
                 if (throwable.getCause() instanceof IOException) {

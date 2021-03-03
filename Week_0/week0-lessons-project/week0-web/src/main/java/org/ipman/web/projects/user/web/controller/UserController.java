@@ -2,11 +2,16 @@ package org.ipman.web.projects.user.web.controller;
 
 import org.ipman.web.mvc.controller.PageController;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import java.sql.Connection;
+import java.sql.Statement;
 
 /**
  * Created by ipipman on 2021/3/3.
@@ -23,6 +28,9 @@ public class UserController implements PageController {
     @GET
     @Path("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+//        // TODO: Testing JNDI
+//        Context initContext = new InitialContext();
+//        DataSource dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/UserPlatformDB");
         return "/login-form.jsp";
     }
 
