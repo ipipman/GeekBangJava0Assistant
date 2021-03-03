@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>${revision}</version>
     <modules>
-        <module>week0-web-user</module>
+        <module>week0-web</module>
         <module>week0-web-frame</module>
     </modules>
 
