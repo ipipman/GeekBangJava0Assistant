@@ -1,6 +1,10 @@
 package org.ipman.web.projects.user.web.controller;
 
 import org.ipman.web.mvc.controller.PageController;
+import org.ipman.web.projects.user.domain.User;
+import org.ipman.web.projects.user.repository.DatabaseUserRepository;
+import org.ipman.web.projects.user.repository.UserRepository;
+import org.ipman.web.projects.user.sql.DBConnectionManager;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -10,8 +14,11 @@ import javax.sql.DataSource;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.container.Suspended;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by ipipman on 2021/3/3.
@@ -24,13 +31,20 @@ import java.sql.Statement;
 @Path("/user")
 public class UserController implements PageController {
 
+
     @POST
     @GET
     @Path("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-//        // TODO: Testing JNDI
-//        Context initContext = new InitialContext();
-//        DataSource dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/UserPlatformDB");
+        // TODO: Testing JNDI
+        Context initContext = new InitialContext();
+        DataSource dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/UserPlatformDB");
+
+        DBConnectionManager dbConnectionManager = new DBConnectionManager();
+        DatabaseUserRepository databaseUserRepository = new DatabaseUserRepository(dbConnectionManager);
+        Collection<User> users = databaseUserRepository.getAll();
+        System.out.println(users);
+
         return "/login-form.jsp";
     }
 

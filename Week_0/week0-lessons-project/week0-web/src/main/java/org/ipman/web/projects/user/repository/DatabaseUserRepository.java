@@ -5,13 +5,17 @@ import org.ipman.web.function.ThrowableFunction;
 import org.ipman.web.projects.user.domain.User;
 import org.ipman.web.projects.user.sql.DBConnectionManager;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,16 +87,53 @@ public class DatabaseUserRepository implements UserRepository {
     public User getByNameAndPassword(String userName, String password) {
         return executeQuery("SELECT id,name,password,email,phoneNumber FROM users WHERE name=? and password=?",
                 resultSet -> {
-                    // TODO
-                    return new User();
+                    List<User> users = toUserItemList(resultSet);
+                    if (!users.isEmpty()) {
+                        return users.get(0);
+                    } else {
+                        return null;
+                    }
                 }, COMMON_EXCEPTION_HANDLER, userName, password);
     }
 
     @Override
     public Collection<User> getAll() {
-        return null;
+        return executeQuery("SELECT id,name,password,email,phoneNumber FROM",
+                this::toUserItemList, COMMON_EXCEPTION_HANDLER);
     }
 
+    /**
+     * 获取查询结果数据
+     */
+    protected List<User> toUserItemList(ResultSet resultSet)
+            throws IntrospectionException, SQLException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        BeanInfo userBeanInfo = Introspector.getBeanInfo(User.class, Object.class);
+        List<User> users = new ArrayList<>();
+        // 游标滚动
+        while (resultSet.next()) {
+            User user = new User();
+            for (PropertyDescriptor propertyDescriptor : userBeanInfo.getPropertyDescriptors()) {
+                String fieldName = propertyDescriptor.getName();
+                Class<?> fieldType = propertyDescriptor.getPropertyType();
+                // 根据字段属性获取数据
+                String methodName = resultSetMethodMappings.get(fieldType);
+                String columnLabel = fieldName;
+                Method resultSetMethod = ResultSet.class.getMethod(methodName, String.class);
+                // 通过反射调用 getXXX(String) 方法
+                Object resultValue = resultSetMethod.invoke(resultSet, columnLabel);
+
+                // 获取反射 User 类 Setter 方法
+                Method setterMethodFromUser = propertyDescriptor.getWriteMethod();
+                setterMethodFromUser.invoke(user, resultValue);
+            }
+            users.add(user);
+        }
+        return users;
+    }
+
+    /**
+     * 执行SQL语句
+     */
     protected <T> T executeQuery(String sql, ThrowableFunction<ResultSet, T> function,
                                  Consumer<Throwable> exceptionHandler, Object... args) {
         Connection connection = getConnection();
@@ -106,12 +147,13 @@ public class DatabaseUserRepository implements UserRepository {
                 if (wrapperType == null) {
                     wrapperType = argType;
                 }
-                // SetLong SetString
+                // Set Args
                 String methodName = preparedStatementMethodMappings.get(argType);
                 Method method = PreparedStatement.class.getMethod(methodName, wrapperType);
                 method.invoke(preparedStatement, i + 1, args);
             }
             ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println(resultSet);
             return function.apply(resultSet);
 
         } catch (Throwable e) {

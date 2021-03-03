@@ -11,22 +11,22 @@
     <module>week0-web-frame</module>
   </modules>
   <properties>
-    <maven.source.version>3.2.1</maven.source.version>
-    <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
-    <commons-lang.version>2.6</commons-lang.version>
-    <file.encoding>UTF-8</file.encoding>
-    <maven.war.version>3.3.1</maven.war.version>
-    <jstl.version>1.2</jstl.version>
-    <maven.compiler.target>8</maven.compiler.target>
-    <maven.compiler.version>3.8.1</maven.compiler.version>
-    <derby.version>10.1.3.1</derby.version>
-    <maven.deploy.version>2.8.2</maven.deploy.version>
-    <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
-    <revision>v1-SNAPSHOT</revision>
-    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-    <maven.jar.version>3.2.0</maven.jar.version>
-    <maven.compiler.source>8</maven.compiler.source>
     <maven.flatten.version>1.2.5</maven.flatten.version>
+    <maven.war.version>3.3.1</maven.war.version>
+    <file.encoding>UTF-8</file.encoding>
+    <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
+    <maven.source.version>3.2.1</maven.source.version>
+    <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
+    <maven.compiler.version>3.8.1</maven.compiler.version>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.deploy.version>2.8.2</maven.deploy.version>
+    <commons-lang.version>2.6</commons-lang.version>
+    <revision>v1-SNAPSHOT</revision>
+    <derby.version>10.1.3.1</derby.version>
+    <maven.compiler.target>8</maven.compiler.target>
+    <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+    <jstl.version>1.2</jstl.version>
+    <maven.jar.version>3.2.0</maven.jar.version>
   </properties>
   <dependencyManagement>
     <dependencies>
