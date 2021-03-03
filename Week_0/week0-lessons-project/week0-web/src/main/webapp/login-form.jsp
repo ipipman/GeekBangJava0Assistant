@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-signin">
+		<form class="form-signin" action="user-signin" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">登录</h1>
 			<label for="inputEmail" class="sr-only">请输出电子邮件</label> <input
 				type="email" id="inputEmail" class="form-control"

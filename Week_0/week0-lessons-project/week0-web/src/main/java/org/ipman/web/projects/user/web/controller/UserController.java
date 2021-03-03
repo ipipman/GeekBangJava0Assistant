@@ -5,6 +5,7 @@ import org.ipman.web.mvc.controller.PageController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 /**
@@ -18,10 +19,11 @@ import javax.ws.rs.Path;
 @Path("/user")
 public class UserController implements PageController {
 
+    @POST
     @GET
-    @Path("/index")
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-        return null;
+    @Path("/login")
+    public String login(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+        return "/login-form.jsp";
     }
+
 }

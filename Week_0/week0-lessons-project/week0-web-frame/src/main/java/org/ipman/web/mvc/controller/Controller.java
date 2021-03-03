@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 public interface Controller {
 
     /**
-     * @param request   HTTP 请求
-     * @param response  HTTP 响应
-     * @return 试图地址路径（jsp的路径）
-     * @throws Throwable 异常发生时处理
+     * @param request  HTTP 请求
+     * @param response HTTP 相应
+     * @return 视图地址路径
+     * @throws Throwable 异常发生时
      */
-    String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable;
+//    String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable;
 
 }

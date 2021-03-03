@@ -1,6 +1,10 @@
 package org.ipman.web.mvc;
 
+import org.apache.commons.lang.StringUtils;
 import org.ipman.web.mvc.controller.Controller;
+import org.ipman.web.mvc.controller.PageController;
+import org.ipman.web.mvc.controller.RestController;
+import sun.jvm.hotspot.jdi.MethodImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -15,6 +19,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static org.apache.commons.lang.StringUtils.substringAfter;
+
 /**
  * Created by ipipman on 2021/3/3.
  *
@@ -28,6 +34,9 @@ public class FrontControllerServlet extends HttpServlet {
 
     // Path 与 Method 的映射关系
     private Map<String, HandlerMethodInfo> handlerMethodInfoMapping = new HashMap<>();
+
+    // Path 与 Controller 的映射关系
+    private Map<String, Controller> controllersMapping = new HashMap<>();
 
     /**
      * 第一步：初始化 Servlet
@@ -56,12 +65,15 @@ public class FrontControllerServlet extends HttpServlet {
             for (Method method : publicMethods) {
                 Set<String> supportedHttpMethods = findSupportedHttpMethods(method);
                 Path pathFromMethod = method.getAnnotation(Path.class);
-                if (pathFromMethod != null){
+                if (pathFromMethod != null) {
                     requestPath += pathFromMethod.value();
+                    // 记录 Path 与 Method 的映射关系
+                    handlerMethodInfoMapping.put(requestPath,
+                            new HandlerMethodInfo(requestPath, method, supportedHttpMethods));
+                    // 记录 Path 与 Controller 的映射关系
+                    controllersMapping.put(requestPath, controller);
                 }
-                // 记录 Path 与 Method 的映射关系
-                handlerMethodInfoMapping.put(requestPath,
-                        new HandlerMethodInfo(requestPath, method, supportedHttpMethods));
+
             }
         }
     }
@@ -87,17 +99,58 @@ public class FrontControllerServlet extends HttpServlet {
     }
 
 
-
     /**
      * 第二步：Service 路由
      */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ServletContext servletContext = request.getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/user.jsp");
-        requestDispatcher.forward(request, response);
+
+        // 建立映射关系
+        String requestURI = request.getRequestURI();
+        String prefixPath = request.getContextPath();
+        // 映射路径（子路径）
+        String requestMappingPath = substringAfter(requestURI,
+                StringUtils.replace(prefixPath, "//", "/"));
+        // 映射到 Controller
+        Controller controller = controllersMapping.get(requestMappingPath);
+        if (controller != null) {
+            HandlerMethodInfo handlerMethodInfo = handlerMethodInfoMapping.get(requestMappingPath);
+            try {
+                String httpMethod = request.getMethod();
+                // HTTP 方法不支持
+                if (!handlerMethodInfo.getSupportedHttpMethods().contains(httpMethod)){
+                    response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+                    return;
+                }
+                // PageController
+                if (controller instanceof PageController){
+
+//                    Class<?> controllerClass = controller.getClass();
+                    Method controllerMethod = handlerMethodInfo.getHandlerMethod();
+                    String viewPath = (String) controllerMethod.invoke(controller, request, response);
+
+
+                    // 页面请求 forward
+                    ServletContext servletContext = request.getServletContext();
+                    if (!viewPath.startsWith("/")) {
+                        viewPath = "/" + viewPath;
+                    }
+                    RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(viewPath);
+                    requestDispatcher.forward(request, response);
+                    return;
+                } else if (controller instanceof RestController){
+                    // TODO
+                }
+
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+                if (throwable.getCause() instanceof IOException) {
+                    throw (IOException) throwable.getCause();
+                } else {
+                    throw new ServletException(throwable.getCause());
+                }
+            }
+        }
     }
-
-
 }
