@@ -3,17 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>lessons-project</artifactId>
+        <artifactId>week0-lessons-project</artifactId>
         <groupId>org.example</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>web-mvc</artifactId>
-    <name>My Web-MVC Framework</name>
-    <packaging>jar</packaging>
+    <artifactId>week0-web-user</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>week0-web-frame</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <!-- Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -21,16 +27,17 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JAX-RS API -->
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
         </dependency>
+
     </dependencies>
+
 
 </project>
