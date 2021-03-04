@@ -39,7 +39,8 @@ public class DatabaseUserRepository implements UserRepository {
 
     private final DBConnectionManager dbConnectionManager;
 
-    public DatabaseUserRepository(DBConnectionManager dbConnectionManager) {
+    public DatabaseUserRepository() {
+        DBConnectionManager dbConnectionManager = new DBConnectionManager();
         this.dbConnectionManager = dbConnectionManager;
     }
 
@@ -98,7 +99,7 @@ public class DatabaseUserRepository implements UserRepository {
 
     @Override
     public Collection<User> getAll() {
-        return executeQuery("SELECT id,name,password,email,phoneNumber FROM",
+        return executeQuery("SELECT id,name,password,email,phoneNumber FROM users",
                 this::toUserItemList, COMMON_EXCEPTION_HANDLER);
     }
 
@@ -157,6 +158,7 @@ public class DatabaseUserRepository implements UserRepository {
             return function.apply(resultSet);
 
         } catch (Throwable e) {
+            e.printStackTrace();
             exceptionHandler.accept(e);
         }
         return null;

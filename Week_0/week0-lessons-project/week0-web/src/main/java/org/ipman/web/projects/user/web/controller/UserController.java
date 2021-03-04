@@ -31,19 +31,18 @@ import java.util.List;
 @Path("/user")
 public class UserController implements PageController {
 
+    private DatabaseUserRepository databaseUserRepository = new DatabaseUserRepository();
 
     @POST
     @GET
     @Path("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-        // TODO: Testing JNDI
-        Context initContext = new InitialContext();
-        DataSource dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/UserPlatformDB");
 
-        DBConnectionManager dbConnectionManager = new DBConnectionManager();
-        DatabaseUserRepository databaseUserRepository = new DatabaseUserRepository(dbConnectionManager);
+
         Collection<User> users = databaseUserRepository.getAll();
         System.out.println(users);
+
+
 
         return "/login-form.jsp";
     }
