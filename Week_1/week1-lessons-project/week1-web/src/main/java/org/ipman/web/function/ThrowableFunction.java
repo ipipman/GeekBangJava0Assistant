@@ -1,5 +1,6 @@
 package org.ipman.web.function;
 
+
 @FunctionalInterface
 public interface ThrowableFunction<T, R> {
 
@@ -11,6 +12,7 @@ public interface ThrowableFunction<T, R> {
      * @throws Throwable if met with any error
      */
     R apply(T t) throws Throwable;
+
 
     /**
      * Executes {@link ThrowableFunction}
