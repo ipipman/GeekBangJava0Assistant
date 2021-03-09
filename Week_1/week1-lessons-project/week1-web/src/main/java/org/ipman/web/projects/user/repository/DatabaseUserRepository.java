@@ -29,12 +29,12 @@ import static org.apache.commons.lang.ClassUtils.wrapperToPrimitive;
  */
 public class DatabaseUserRepository implements UserRepository {
 
-    private static Logger logger = Logger.getLogger(DatabaseUserRepository.class.getName());
+    private final static Logger logger = Logger.getLogger(DatabaseUserRepository.class.getName());
 
     /**
      * 通用处理方式
      */
-    private static Consumer<Throwable> COMMON_EXCEPTION_HANDLER = e -> logger.log(Level.SEVERE, e.getMessage());
+    private final static Consumer<Throwable> COMMON_EXCEPTION_HANDLER = e -> logger.log(Level.SEVERE, e.getMessage());
 
     private final DBConnectionManager dbConnectionManager;
 
@@ -50,35 +50,27 @@ public class DatabaseUserRepository implements UserRepository {
     /**
      * 数据类型与 ResultSet 方法名映射
      */
-    static Map<Class, String> resultSetMethodMappings = new HashMap<>();
-
-    static Map<Class, String> preparedStatementMethodMappings = new HashMap<>();
-
+    static Map<Class<?>, String> resultSetMethodMappings = new HashMap<>();
+    static Map<Class<?>, String> preparedStatementMethodMappings = new HashMap<>();
     static {
         resultSetMethodMappings.put(Long.class, "getLong");
         resultSetMethodMappings.put(String.class, "getString");
 
         preparedStatementMethodMappings.put(Long.class, "setLong"); // long
         preparedStatementMethodMappings.put(String.class, "setString"); //
-
     }
 
-    @Override
-    public boolean save(User user) {
-        String sql = "INSERT INTO users(name,password,email,phoneNumber) VALUES (" +
-                "'" + user.getName() + "'," +
-                "'" + user.getPassword() + "'," +
-                "'" + user.getEmail() + "'," +
-                "'" + user.getPhoneNumber() + "')";
-        Connection connection = getConnection();
-        try {
-            Statement statement = connection.createStatement();
-            System.out.println(statement.executeUpdate(sql));
-        }catch (Throwable e){
-            e.printStackTrace();
-        }
-        return false;
-    }
+    public static final String INSERT_USER_DML_SQL =
+            "INSERT INTO users(name,password,email,phoneNumber) VALUES " +
+                    "(?,?,?,?)";
+
+    public static final String SELECT_USER_CONDITION_DQL_SQL =
+            "SELECT id,name,password,email,phoneNumber FROM users " +
+                    "WHERE name=? and password=?";
+
+    public static final String SELECT_USER_DQL_SQL =
+            "SELECT id,name,password,email,phoneNumber FROM users";
+
 
     @Override
     public boolean deleteById(Long userId) {
@@ -97,7 +89,7 @@ public class DatabaseUserRepository implements UserRepository {
 
     @Override
     public User getByNameAndPassword(String userName, String password) {
-        return executeQuery("SELECT id,name,password,email,phoneNumber FROM users WHERE name=? and password=?",
+        return executeQuery(SELECT_USER_CONDITION_DQL_SQL,
                 resultSet -> {
                     List<User> users = toUserItemList(resultSet);
                     if (!users.isEmpty()) {
@@ -105,13 +97,18 @@ public class DatabaseUserRepository implements UserRepository {
                     } else {
                         return null;
                     }
-                }, COMMON_EXCEPTION_HANDLER, userName, password);
+                },
+                COMMON_EXCEPTION_HANDLER, userName, password);
     }
 
     @Override
     public Collection<User> getAll() {
-        return executeQuery("SELECT id,name,password,email,phoneNumber FROM users",
-                this::toUserItemList, COMMON_EXCEPTION_HANDLER);
+        return executeQuery(SELECT_USER_DQL_SQL, this::toUserItemList, COMMON_EXCEPTION_HANDLER);
+    }
+
+    @Override
+    public boolean save(User user) {
+        return executeUpdate(INSERT_USER_DML_SQL, COMMON_EXCEPTION_HANDLER, user.getName(), user.getPassword(), user.getEmail(), user.getPhoneNumber());
     }
 
     /**
@@ -129,10 +126,9 @@ public class DatabaseUserRepository implements UserRepository {
                 Class<?> fieldType = propertyDescriptor.getPropertyType();
                 // 根据字段属性获取数据
                 String methodName = resultSetMethodMappings.get(fieldType);
-                String columnLabel = fieldName;
                 Method resultSetMethod = ResultSet.class.getMethod(methodName, String.class);
                 // 通过反射调用 getXXX(String) 方法
-                Object resultValue = resultSetMethod.invoke(resultSet, columnLabel);
+                Object resultValue = resultSetMethod.invoke(resultSet, fieldName);
 
                 // 获取反射 User 类 Setter 方法
                 Method setterMethodFromUser = propertyDescriptor.getWriteMethod();
@@ -144,7 +140,32 @@ public class DatabaseUserRepository implements UserRepository {
     }
 
     /**
-     * 执行SQL语句
+     * 执行SQL 修改语句
+     */
+    protected <T> boolean executeUpdate(String sql, Consumer<Throwable> exceptionHandler, Object... args) {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                Object arg = args[i];
+                Class<?> argType = arg.getClass();
+                Class<?> wrapperType = wrapperToPrimitive(argType);
+                if (wrapperType == null) {
+                    wrapperType = argType;
+                }
+                String methodName = preparedStatementMethodMappings.get(argType);
+                Method method = preparedStatement.getClass().getMethod(methodName, int.class, wrapperType);
+                method.invoke(preparedStatement, i + 1, arg);
+            }
+            return preparedStatement.execute();
+        } catch (Throwable e) {
+            exceptionHandler.accept(e);
+        }
+        return false;
+    }
+
+    /**
+     * 执行SQL 查询语句
      */
     protected <T> T executeQuery(String sql, ThrowableFunction<ResultSet, T> function,
                                  Consumer<Throwable> exceptionHandler, Object... args) {
@@ -153,17 +174,16 @@ public class DatabaseUserRepository implements UserRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
                 Object arg = args[i];
-                Class argType = arg.getClass();
-                Class wrapperType = wrapperToPrimitive(argType);
+                Class<?> argType = arg.getClass();
+                Class<?> wrapperType = wrapperToPrimitive(argType);
                 if (wrapperType == null) {
                     wrapperType = argType;
                 }
 
                 // Boolean -> boolean
                 String methodName = preparedStatementMethodMappings.get(argType);
-                Method method = preparedStatement.getClass().getMethod(methodName, wrapperType);
-
-                method.invoke(preparedStatement, i + 1, args);
+                Method method = preparedStatement.getClass().getMethod(methodName, int.class, wrapperType);
+                method.invoke(preparedStatement, i + 1, arg);
             }
             ResultSet resultSet = preparedStatement.executeQuery();
             // 返回一个 POJO List -> ResultSet -> POJO List
