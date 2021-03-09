@@ -4,17 +4,17 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.ipman</groupId>
-    <artifactId>week0-lessons-project</artifactId>
+    <artifactId>week1-lessons-project</artifactId>
     <version>v1-SNAPSHOT</version>
   </parent>
   <groupId>org.ipman</groupId>
-  <artifactId>week0-web</artifactId>
+  <artifactId>week1-web</artifactId>
   <version>v1-SNAPSHOT</version>
   <packaging>war</packaging>
   <dependencies>
     <dependency>
       <groupId>org.ipman</groupId>
-      <artifactId>week0-web-frame</artifactId>
+      <artifactId>week1-web-frame</artifactId>
       <version>${revision}</version>
     </dependency>
     <dependency>
@@ -29,6 +29,28 @@
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>3.0.1-b11</version>
     </dependency>
   </dependencies>
   <build>
@@ -46,6 +68,7 @@
             </goals>
             <configuration>
               <path>/</path>
+              <enableNaming>true</enableNaming>
             </configuration>
           </execution>
         </executions>

@@ -3,20 +3,22 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ipman</groupId>
-  <artifactId>week0-lessons-project</artifactId>
+  <artifactId>week1-lessons-project</artifactId>
   <version>v1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-    <module>week0-web</module>
-    <module>week0-web-frame</module>
+    <module>week1-web</module>
+    <module>week1-web-frame</module>
   </modules>
   <properties>
     <maven.flatten.version>1.2.5</maven.flatten.version>
+    <hibernate.validator.version>6.1.7.Final</hibernate.validator.version>
     <maven.war.version>3.3.1</maven.war.version>
     <file.encoding>UTF-8</file.encoding>
     <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
     <maven.source.version>3.2.1</maven.source.version>
     <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
+    <hibernate.version>5.4.29.Final</hibernate.version>
     <maven.compiler.version>3.8.1</maven.compiler.version>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.deploy.version>2.8.2</maven.deploy.version>
@@ -54,6 +56,21 @@
         <groupId>org.apache.derby</groupId>
         <artifactId>derby</artifactId>
         <version>${derby.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.validator</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate.validator.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

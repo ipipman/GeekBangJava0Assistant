@@ -175,11 +175,11 @@ public class DatabaseUserRepository implements UserRepository {
             for (int i = 0; i < args.length; i++) {
                 Object arg = args[i];
                 Class<?> argType = arg.getClass();
+                // 包装类型转原生类型
                 Class<?> wrapperType = wrapperToPrimitive(argType);
                 if (wrapperType == null) {
                     wrapperType = argType;
                 }
-
                 // Boolean -> boolean
                 String methodName = preparedStatementMethodMappings.get(argType);
                 Method method = preparedStatement.getClass().getMethod(methodName, int.class, wrapperType);

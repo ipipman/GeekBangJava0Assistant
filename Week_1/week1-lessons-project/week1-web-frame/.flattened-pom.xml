@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.ipman</groupId>
-    <artifactId>week0-lessons-project</artifactId>
+    <artifactId>week1-lessons-project</artifactId>
     <version>v1-SNAPSHOT</version>
   </parent>
   <groupId>org.ipman</groupId>
-  <artifactId>week0-web-frame</artifactId>
+  <artifactId>week1-web-frame</artifactId>
   <version>v1-SNAPSHOT</version>
   <dependencies>
     <dependency>
