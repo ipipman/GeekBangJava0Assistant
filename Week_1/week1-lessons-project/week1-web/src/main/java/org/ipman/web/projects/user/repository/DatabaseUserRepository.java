@@ -70,8 +70,6 @@ public class DatabaseUserRepository implements UserRepository {
                 "'" + user.getPassword() + "'," +
                 "'" + user.getEmail() + "'," +
                 "'" + user.getPhoneNumber() + "')";
-        System.out.println(sql);
-
         Connection connection = getConnection();
         try {
             Statement statement = connection.createStatement();
@@ -79,13 +77,6 @@ public class DatabaseUserRepository implements UserRepository {
         }catch (Throwable e){
             e.printStackTrace();
         }
-
-//        executeQuery(sql,
-//                resultSet -> {
-//                    System.out.println("插入结果：" + resultSet);
-//                    return true;
-//                }, COMMON_EXCEPTION_HANDLER);
-//
         return false;
     }
 
