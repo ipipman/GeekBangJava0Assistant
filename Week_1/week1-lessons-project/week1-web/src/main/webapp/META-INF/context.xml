@@ -21,7 +21,7 @@
               maxTotal="100" maxIdle="30" maxWait="10000"
               username="" password=""
               driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
-              url="jdbc:derby:week1-db/user-platform;create=true"/>
+              url="jdbc:derby:/Users/huangyan110110114/GeekBangJava0Assistant/Week_1/week1-lessons-project/week1-db/user-platform;create=true"/>
 
 
 </Context>

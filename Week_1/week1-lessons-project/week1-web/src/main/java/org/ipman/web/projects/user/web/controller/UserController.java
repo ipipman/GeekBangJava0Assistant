@@ -37,23 +37,13 @@ public class UserController implements PageController {
     @GET
     @Path("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-
         User user = new User();
         user.setName("ipmana");
         user.setPassword("***");
         user.setEmail("ipman@163.com");
         user.setPhoneNumber("15810833333");
         databaseUserRepository.save(user);
-
-
         Collection<User> users = databaseUserRepository.getAll();
-        System.out.println(users);
-
-
-
-
-
-
         return "/login-form.jsp";
     }
 
