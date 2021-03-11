@@ -3,10 +3,13 @@ package org.ipman.web.context;
 import org.ipman.web.function.ThrowableAction;
 import org.ipman.web.function.ThrowableFunction;
 
+import javax.annotation.Resource;
 import javax.naming.*;
 import javax.servlet.ServletContext;
+import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 /**
  * Created by ipipman on 2021/3/10.
@@ -79,7 +82,46 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
         // 实例化组件
         instantiateComponents();
 
+        // 初始化组件（支持 Java 标准 Commons Annotation 生命周期）
+        initializeComponents();
 
+    }
+
+    /*
+     * 初始化组件 （ 支持 Java 标准 Commons Annotation 生命周期）
+     */
+    protected void initializeComponents() {
+        componentMap.values().forEach(component -> {
+            Class<?> componentClazz = component.getClass();
+            // 注入阶段 - {@link Resource}
+            injectComponents(component, componentClazz);
+
+        });
+    }
+
+    /*
+     * 注入阶段 - {@link Resource}
+     */
+    private void injectComponents(Object component, Class<?> componentClazz) {
+        Stream.of(componentClazz.getDeclaredFields())
+                .filter(filed -> {
+                    int mods = filed.getModifiers();
+                    return !Modifier.isStatic(mods) &&
+                            filed.isAnnotationPresent(Resource.class);
+                })
+                .forEach(field -> {
+                    Resource resource = field.getAnnotation(Resource.class);
+                    String resourceName = resource.name();
+                    Object injectedObject = lookupComponent(resourceName);
+                    // 设置 成员 为可修改的
+                    field.setAccessible(true);
+                    try {
+                        //注入目标对象
+                        field.set(component, injectedObject);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 
     /*
@@ -106,9 +148,19 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
     protected void instantiateComponents() {
         // 遍历获取所有组件的名称
         List<String> componentNames = findAllComponentNames();
-
-
+        // 通过依赖查找，实例化对象（ Tomcat BeanFactory setter 方法的执行，进支持简单的类型 ）
+        componentNames.forEach(name -> {
+            componentMap.put(name, lookupComponent(name));
+        });
     }
+
+    /*
+     * 在 JNDI 中加载组件
+     */
+    protected <C> C lookupComponent(String name) {
+        return executeInContext(context -> (C) context.lookup(name));
+    }
+
 
     /*
      * 在 JDNI 中查找所有组件
