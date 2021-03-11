@@ -5,6 +5,11 @@
          http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          metadata-complete="true" version="2.5">
 
+    <!-- 添加 组件初始化器， 放置在Web.xml 首位 -->
+    <listener>
+        <listener-class>org.ipman.web.projects.user.listener.ComponentContextInitializerListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>default</servlet-name>
         <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
