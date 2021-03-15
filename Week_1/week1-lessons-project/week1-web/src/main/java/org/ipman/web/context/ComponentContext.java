@@ -3,6 +3,7 @@ package org.ipman.web.context;
 import org.ipman.web.function.ThrowableAction;
 import org.ipman.web.function.ThrowableFunction;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.naming.*;
 import javax.servlet.ServletContext;
@@ -96,6 +97,31 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
             // 注入阶段 - {@link Resource}
             injectComponents(component, componentClazz);
 
+            // 初始化阶段 - {@link PostConstruct}
+            processPostConstruct(component, componentClazz);
+
+            
+
+        });
+    }
+
+    /*
+     * 初始化阶段 - {@link PostConstruct}
+     */
+    private void processPostConstruct(Object component, Class<?> componentClazz) {
+        Stream.of(componentClazz.getMethods())
+                .filter(method -> {
+                    int mods = method.getModifiers();
+                    return !Modifier.isStatic(mods) &&
+                            method.getParameterCount() == 0 &
+                                    method.isAnnotationPresent(PostConstruct.class);
+                }).forEach(method -> {
+            try {
+                // 初始化 目标对象
+                method.invoke(component);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
@@ -108,20 +134,19 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
                     int mods = filed.getModifiers();
                     return !Modifier.isStatic(mods) &&
                             filed.isAnnotationPresent(Resource.class);
-                })
-                .forEach(field -> {
-                    Resource resource = field.getAnnotation(Resource.class);
-                    String resourceName = resource.name();
-                    Object injectedObject = lookupComponent(resourceName);
-                    // 设置 成员 为可修改的
-                    field.setAccessible(true);
-                    try {
-                        //注入目标对象
-                        field.set(component, injectedObject);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                });
+                }).forEach(field -> {
+            Resource resource = field.getAnnotation(Resource.class);
+            String resourceName = resource.name();
+            Object injectedObject = lookupComponent(resourceName);
+            // 设置 成员 为可修改的
+            field.setAccessible(true);
+            try {
+                //注入目标对象
+                field.set(component, injectedObject);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /*
