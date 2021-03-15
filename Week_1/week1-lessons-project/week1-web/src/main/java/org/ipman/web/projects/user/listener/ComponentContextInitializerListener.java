@@ -30,7 +30,8 @@ public class ComponentContextInitializerListener implements ServletContextListen
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+        // 销毁阶段
+        ComponentContext.getInstance().processPreDestroy();
     }
 }
 

@@ -42,7 +42,7 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
     private ClassLoader classLoader;
 
     // 所有组件的映射关系
-    private final Map<String, Object> componentMap = new LinkedHashMap<>();
+    private Map<String, Object> componentMap = new LinkedHashMap<>();
 
     /**
      * 单例模式，获取 CompontContext
@@ -99,9 +99,6 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
 
             // 初始化阶段 - {@link PostConstruct}
             processPostConstruct(component, componentClazz);
-
-            
-
         });
     }
 
@@ -262,4 +259,15 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
     }
 
 
+    /*
+     * 上下文 销毁
+     */
+    public void processPreDestroy() {
+        this.componentMap = null;
+        try {
+            this.envContext.close();
+        } catch (NamingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
