@@ -185,6 +185,13 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
 
 
     /*
+     * 通过名称 进行依赖查找
+     */
+    public <C> C getComponent(String name) {
+        return (C) componentMap.get(name);
+    }
+
+    /*
      * 在 JDNI 中查找所有组件
      */
     private List<String> findAllComponentNames() {
@@ -263,11 +270,11 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
      * 上下文 销毁
      */
     public void processPreDestroy() {
-        this.componentMap = null;
-        try {
-            this.envContext.close();
-        } catch (NamingException e) {
-            throw new RuntimeException(e);
-        }
+//        this.componentMap = null;
+//        try {
+//            this.envContext.close();
+//        } catch (NamingException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }
