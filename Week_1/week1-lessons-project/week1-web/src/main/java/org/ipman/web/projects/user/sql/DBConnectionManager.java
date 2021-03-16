@@ -1,11 +1,14 @@
 package org.ipman.web.projects.user.sql;
 
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
+import javax.annotation.Resource;
+
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by ipipman on 2021/3/3.
@@ -17,24 +20,39 @@ import java.sql.*;
  */
 public class DBConnectionManager { // JNDI Commpont
 
+    private final static Logger logger = Logger.getLogger(DBConnectionManager.class.getName());
+
+    @Resource(name = "jdbc/UserPlatformDB")
+    private DataSource dataSource;
+
+    @Resource(name = "bean/EntityManager")
+    private EntityManager entityManager;
+
     private Connection connection;
 
-    public DBConnectionManager() {
-        try {
-            // TODO: Testing JNDI
-            Context initContext = new InitialContext();
-            DataSource dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/UserPlatformDB");
-            connection = dataSource.getConnection();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-    }
-    private static String mapColumnLabel(String fieldName) {
-        return fieldName;
+    /*
+     * 获取 JPA EntityManager
+     */
+    public EntityManager getEntityManager() {
+        logger.log(Level.INFO, "当前 EntityManager 实现类：" + entityManager.getClass().getName());
+        return entityManager;
     }
 
+    /*
+     * 获取 JNDI 数据库连接
+     */
     public Connection getConnection() {
-        return this.connection;
+        // 依赖查找
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+        if (connection != null) {
+            logger.log(Level.INFO, "获取 JNDI 数据库连接成功");
+        }
+        return connection;
     }
 
     public void releaseConnection() {

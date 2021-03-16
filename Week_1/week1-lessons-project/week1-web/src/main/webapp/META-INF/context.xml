@@ -23,7 +23,7 @@
               driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
               url="jdbc:derby:/Users/huangyan110110114/GeekBangJava0Assistant/Week_1/week1-lessons-project/week1-db/user-platform;create=true"/>
 
-    <!-- FactoryBean -->
+    <!-- DBConnectionManager FactoryBean -->
     <Resource name="bean/DBConnectionManager" auth="Container"
               type="org.ipman.web.projects.user.sql.DBConnectionManager"
               factory="org.apache.naming.factory.BeanFactory" />

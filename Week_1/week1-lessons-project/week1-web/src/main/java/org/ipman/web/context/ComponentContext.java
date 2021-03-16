@@ -270,11 +270,11 @@ public class ComponentContext { // 组件上下文（Web 应用全局使用）
      * 上下文 销毁
      */
     public void processPreDestroy() {
-//        this.componentMap = null;
-//        try {
-//            this.envContext.close();
-//        } catch (NamingException e) {
-//            throw new RuntimeException(e);
-//        }
+        this.componentMap = null;
+        try {
+            this.envContext.close();
+        } catch (NamingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
