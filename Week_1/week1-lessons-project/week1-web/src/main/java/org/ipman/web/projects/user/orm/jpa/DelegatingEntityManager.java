@@ -55,7 +55,7 @@ public class DelegatingEntityManager implements EntityManager {
     }
 
     // 加载 jpa-datasource.properties 配置
-    private Map loadProperties(String propertiesLocation) {
+    private Map<?, ?> loadProperties(String propertiesLocation) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         URL propertiesFileURL = classLoader.getResource(propertiesLocation);
         if (propertiesFileURL == null) {

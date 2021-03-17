@@ -5,6 +5,9 @@ import org.ipman.web.function.ThrowableFunction;
 import org.ipman.web.projects.user.domain.User;
 import org.ipman.web.projects.user.sql.DBConnectionManager;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -31,6 +34,9 @@ public class DatabaseUserRepository implements UserRepository {
 
     private final static Logger logger = Logger.getLogger(DatabaseUserRepository.class.getName());
 
+    @Resource(name = "bean/EntityManager")
+    private EntityManager entityManager;
+
     /**
      * 通用处理方式
      */
@@ -52,6 +58,7 @@ public class DatabaseUserRepository implements UserRepository {
      */
     static Map<Class<?>, String> resultSetMethodMappings = new HashMap<>();
     static Map<Class<?>, String> preparedStatementMethodMappings = new HashMap<>();
+
     static {
         resultSetMethodMappings.put(Long.class, "getLong");
         resultSetMethodMappings.put(String.class, "getString");
@@ -108,7 +115,23 @@ public class DatabaseUserRepository implements UserRepository {
 
     @Override
     public boolean save(User user) {
-        return executeUpdate(INSERT_USER_DML_SQL, COMMON_EXCEPTION_HANDLER, user.getName(), user.getPassword(), user.getEmail(), user.getPhoneNumber());
+        try {
+            System.out.println(entityManager);
+
+            // 开启事务
+            EntityTransaction entityTransaction = entityManager.getTransaction();
+            entityTransaction.begin();
+
+            // Entity Manager Persist
+            entityManager.persist(user);
+
+            entityTransaction.commit();
+        } catch (Throwable e) {
+
+            COMMON_EXCEPTION_HANDLER.accept(e);
+            return false;
+        }
+        return true;
     }
 
     /**

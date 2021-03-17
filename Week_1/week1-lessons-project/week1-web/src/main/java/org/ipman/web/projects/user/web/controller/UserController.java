@@ -1,5 +1,6 @@
 package org.ipman.web.projects.user.web.controller;
 
+import org.ipman.web.context.ComponentContext;
 import org.ipman.web.mvc.controller.PageController;
 import org.ipman.web.projects.user.domain.User;
 import org.ipman.web.projects.user.repository.DatabaseUserRepository;
@@ -31,19 +32,19 @@ import java.util.List;
 @Path("/user")
 public class UserController implements PageController {
 
-    private DatabaseUserRepository databaseUserRepository = new DatabaseUserRepository();
 
     @POST
     @GET
     @Path("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) throws Throwable {
         User user = new User();
-        user.setName("ipmana");
+        user.setName("ipsd");
         user.setPassword("***");
         user.setEmail("ipman@163.com");
         user.setPhoneNumber("15810833333");
-        databaseUserRepository.save(user);
-        Collection<User> users = databaseUserRepository.getAll();
+        ComponentContext componentContext = ComponentContext.getInstance();
+        DatabaseUserRepository databaseUserRepository = componentContext.getComponent("bean/DatabaseUserRepository");
+        System.out.println(databaseUserRepository.save(user));
         return "/login-form.jsp";
     }
 

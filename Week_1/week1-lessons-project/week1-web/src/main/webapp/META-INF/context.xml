@@ -38,5 +38,9 @@
               propertiesLocation="META-INF/jpa-datasource.properties"
               factory="org.apache.naming.factory.BeanFactory" />
 
+    <!-- DatabaseUserRepository FactoryBean -->
+    <Resource name="bean/DatabaseUserRepository" auth="Container"
+              type="org.ipman.web.projects.user.repository.DatabaseUserRepository"
+              factory="org.apache.naming.factory.BeanFactory" />
 
 </Context>
