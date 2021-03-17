@@ -47,4 +47,8 @@
               type="org.ipman.web.projects.user.service.UserServiceImpl"
               factory="org.apache.naming.factory.BeanFactory"/>
 
+    <Resource name="bean/DelegatingValidator" auth="Container"
+              type="org.ipman.web.projects.user.validator.bean.validation.DelegatingValidator"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
 </Context>

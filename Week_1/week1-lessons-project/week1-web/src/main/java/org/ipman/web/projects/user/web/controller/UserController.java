@@ -31,17 +31,14 @@ public class UserController implements PageController {
         user.setPassword("***");
         user.setEmail("ipman@163.com");
         user.setPhoneNumber("15810833333");
-        try {
-            // 从 JNDI 容器中，获取 Component Context
-            ComponentContext componentContext = ComponentContext.getInstance();
-            UserServiceImpl userService = componentContext.getComponent("bean/UserService");
 
-            // Hibernate persist 持久化
-            userService.register(user);
-        } catch (Throwable e) {
-            e.printStackTrace();
-            throw e;
-        }
+        // 从 JNDI 容器中，获取 Component Context
+        ComponentContext componentContext = ComponentContext.getInstance();
+        UserServiceImpl userService = componentContext.getComponent("bean/UserService");
+
+        // Hibernate persist 持久化
+        userService.register(user);
+
         return "/login-form.jsp";
     }
 
