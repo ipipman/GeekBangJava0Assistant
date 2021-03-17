@@ -1,6 +1,9 @@
 package org.ipman.web.projects.user.service;
 
 import org.ipman.web.projects.user.domain.User;
+import org.ipman.web.projects.user.repository.DatabaseUserRepository;
+
+import javax.annotation.Resource;
 
 /**
  * Created by ipipman on 2021/3/10.
@@ -12,9 +15,12 @@ import org.ipman.web.projects.user.domain.User;
  */
 public class UserServiceImpl implements UserService {
 
+    @Resource(name = "bean/DatabaseUserRepository")
+    private DatabaseUserRepository databaseUserRepository;
+
     @Override
     public boolean register(User user) {
-        return false;
+        return databaseUserRepository.save(user);
     }
 
     @Override

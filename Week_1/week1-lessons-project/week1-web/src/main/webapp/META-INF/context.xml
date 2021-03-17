@@ -16,7 +16,7 @@
 
     <!-- 资源或组件类似于 Spring Bean   -->
     <Resource name="jdbc/UserPlatformDB"
-              type="javax.sql.DataSource"  auth="Container"
+              type="javax.sql.DataSource" auth="Container"
               description="Derby database for User Platform"
               maxTotal="100" maxIdle="30" maxWait="10000"
               username="" password=""
@@ -26,7 +26,7 @@
     <!-- DBConnectionManager FactoryBean -->
     <Resource name="bean/DBConnectionManager" auth="Container"
               type="org.ipman.web.projects.user.sql.DBConnectionManager"
-              factory="org.apache.naming.factory.BeanFactory" />
+              factory="org.apache.naming.factory.BeanFactory"/>
 
     <!--
     缺少指定 interface 类型的属性
@@ -36,11 +36,15 @@
               type="org.ipman.web.projects.user.orm.jpa.DelegatingEntityManager"
               persistenceUnitName="emf"
               propertiesLocation="META-INF/jpa-datasource.properties"
-              factory="org.apache.naming.factory.BeanFactory" />
+              factory="org.apache.naming.factory.BeanFactory"/>
 
     <!-- DatabaseUserRepository FactoryBean -->
     <Resource name="bean/DatabaseUserRepository" auth="Container"
               type="org.ipman.web.projects.user.repository.DatabaseUserRepository"
-              factory="org.apache.naming.factory.BeanFactory" />
+              factory="org.apache.naming.factory.BeanFactory"/>
+
+    <Resource name="bean/UserService" auth="Container"
+              type="org.ipman.web.projects.user.service.UserServiceImpl"
+              factory="org.apache.naming.factory.BeanFactory"/>
 
 </Context>
