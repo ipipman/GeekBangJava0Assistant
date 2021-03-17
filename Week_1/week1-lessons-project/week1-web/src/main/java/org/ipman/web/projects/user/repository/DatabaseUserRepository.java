@@ -1,6 +1,5 @@
 package org.ipman.web.projects.user.repository;
 
-import org.apache.commons.lang.ClassUtils;
 import org.ipman.web.function.ThrowableFunction;
 import org.ipman.web.projects.user.domain.User;
 import org.ipman.web.projects.user.sql.DBConnectionManager;
@@ -116,8 +115,6 @@ public class DatabaseUserRepository implements UserRepository {
     @Override
     public boolean save(User user) {
         try {
-            System.out.println(entityManager);
-
             // 开启事务
             EntityTransaction entityTransaction = entityManager.getTransaction();
             entityTransaction.begin();
