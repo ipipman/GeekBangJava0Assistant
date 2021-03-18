@@ -4,12 +4,15 @@ import org.ipman.web.context.ComponentContext;
 import org.ipman.web.mvc.controller.PageController;
 import org.ipman.web.projects.user.domain.User;
 import org.ipman.web.projects.user.service.UserServiceImpl;
+import org.ipman.web.projects.user.validator.bean.validation.DelegatingValidator;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import java.util.Set;
 
 
 /**
@@ -34,6 +37,17 @@ public class UserController implements PageController {
 
         // 从 JNDI 容器中，获取 Component Context
         ComponentContext componentContext = ComponentContext.getInstance();
+
+        // 获取 委派 Validator
+        DelegatingValidator delegatingValidator = componentContext.getComponent("bean/DelegatingValidator");
+        Validator validator = delegatingValidator.getValidator();
+
+        // 校验结果
+        Set<ConstraintViolation<User>> violations = validator.validate(user);
+        violations.forEach(c -> {
+            System.out.println(c.getMessage());
+        });
+
         UserServiceImpl userService = componentContext.getComponent("bean/UserService");
 
         // Hibernate persist 持久化
