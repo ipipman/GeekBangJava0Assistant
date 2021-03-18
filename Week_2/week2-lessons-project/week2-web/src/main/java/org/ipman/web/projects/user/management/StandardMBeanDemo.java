@@ -1,7 +1,6 @@
 package org.ipman.web.projects.user.management;
 
 import org.ipman.web.projects.user.domain.User;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.management.MBeanInfo;
 import javax.management.StandardMBean;

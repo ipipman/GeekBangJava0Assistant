@@ -78,4 +78,17 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
+
+    <!-- Jolokia JMX ÅäÖÃ -->
+    <servlet>
+        <servlet-name>jolokia-agent</servlet-name>
+        <servlet-class>org.jolokia.http.AgentServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jolokia-agent</servlet-name>
+        <url-pattern>/jolokia/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>
