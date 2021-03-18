@@ -2,7 +2,6 @@ package org.ipman.web.projects.user.web.controller;
 
 import org.eclipse.microprofile.config.Config;
 import org.ipman.web.configuration.microprofile.config.DefaultConfigProviderResolver;
-import org.ipman.web.configuration.microprofile.config.JavaConfig;
 import org.ipman.web.context.ComponentContext;
 import org.ipman.web.mvc.controller.PageController;
 import org.ipman.web.projects.user.domain.User;
