@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context> <!-- 上下文资源/组件声明（类似于 Spring 上下文）-->
+
+    <!-- Apache Commons Digester (Read-Only) 表达式（规则） -->
+    <!-- Apache Commons DataSource Connection Pool(DBCP) 1.x -->
+    <!--
+    JNDI : Java Naming and Directory Interface
+    ENV -> java:comp/env
+                        /bean
+                             /DBConnectionManager
+
+    =      java:comp/env/bean/DBConnectionManager
+
+    Tomcat JNDI : http://tomcat.apache.org/tomcat-7.0-doc/jndi-resources-howto.html
+    -->
+
+    <!-- 资源或组件类似于 Spring Bean   -->
+    <Resource name="jdbc/UserPlatformDB"
+              type="javax.sql.DataSource" auth="Container"
+              description="Derby database for User Platform"
+              maxTotal="100" maxIdle="30" maxWait="10000"
+              username="" password=""
+              driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+              url="jdbc:derby:/Users/huangyan110110114/GeekBangJava0Assistant/Week_2/week2-lessons-project/week2-db/user-platform;create=true"/>
+
+    <!-- DBConnectionManager FactoryBean -->
+    <Resource name="bean/DBConnectionManager" auth="Container"
+              type="org.ipman.web.projects.user.sql.DBConnectionManager"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
+    <!--
+    缺少指定 interface 类型的属性
+    目标注入的类型：javax.persistence.EntityManager
+    -->
+    <Resource name="bean/EntityManager" auth="Container"
+              type="org.ipman.web.projects.user.orm.jpa.DelegatingEntityManager"
+              persistenceUnitName="emf"
+              propertiesLocation="META-INF/jpa-datasource.properties"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
+    <!-- DatabaseUserRepository FactoryBean -->
+    <Resource name="bean/DatabaseUserRepository" auth="Container"
+              type="org.ipman.web.projects.user.repository.DatabaseUserRepository"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
+    <Resource name="bean/UserService" auth="Container"
+              type="org.ipman.web.projects.user.service.UserServiceImpl"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
+    <Resource name="bean/DelegatingValidator" auth="Container"
+              type="org.ipman.web.projects.user.validator.bean.validation.DelegatingValidator"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
+</Context>

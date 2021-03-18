@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [09/Mar/2021:15:12:41 +0800] GET / HTTP/1.1 200 801 http-bio-8080-exec-1 775
+0:0:0:0:0:0:0:1 - - [09/Mar/2021:15:12:41 +0800] GET /static/css/bootstrap-4.6.0.min.css HTTP/1.1 304 - http-bio-8080-exec-4 5
+0:0:0:0:0:0:0:1 - - [09/Mar/2021:15:12:41 +0800] GET /static/js/jquery-3.5.1.slim.min.js HTTP/1.1 304 - http-bio-8080-exec-2 6
+0:0:0:0:0:0:0:1 - - [09/Mar/2021:15:12:41 +0800] GET /static/js/popper-1.16.1.min.js HTTP/1.1 304 - http-bio-8080-exec-3 6
+0:0:0:0:0:0:0:1 - - [09/Mar/2021:15:12:41 +0800] GET /static/js/bootstrap-4.6.0.min.js HTTP/1.1 304 - http-bio-8080-exec-5 5
+0:0:0:0:0:0:0:1 - - [09/Mar/2021:15:12:44 +0800] GET /user/login HTTP/1.1 200 1881 http-bio-8080-exec-7 231
