@@ -1,10 +1,15 @@
 package org.ipman.web.projects.user.listener;
 
 import org.ipman.web.context.ComponentContext;
+import org.ipman.web.projects.user.domain.User;
+import org.ipman.web.projects.user.management.UserManager;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.lang.management.ManagementFactory;
 
 /**
  * Created by ipipman on 2021/3/10.
