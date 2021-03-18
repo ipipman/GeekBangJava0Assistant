@@ -30,7 +30,7 @@ public class UserController implements PageController {
         user.setName("ipsd");
         user.setPassword("***");
         user.setEmail("ipman@163.com");
-        user.setPhoneNumber("15810833333");
+        user.setPhoneNumber("25810833333");
 
         // 从 JNDI 容器中，获取 Component Context
         ComponentContext componentContext = ComponentContext.getInstance();

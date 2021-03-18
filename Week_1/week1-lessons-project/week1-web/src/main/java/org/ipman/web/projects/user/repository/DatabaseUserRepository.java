@@ -124,7 +124,7 @@ public class DatabaseUserRepository implements UserRepository {
 
             entityTransaction.commit();
         } catch (Throwable e) {
-
+            e.printStackTrace();
             COMMON_EXCEPTION_HANDLER.accept(e);
             return false;
         }

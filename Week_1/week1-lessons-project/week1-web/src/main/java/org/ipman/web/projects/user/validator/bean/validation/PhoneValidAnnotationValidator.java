@@ -17,11 +17,11 @@ import java.util.regex.PatternSyntaxException;
  */
 public class PhoneValidAnnotationValidator implements ConstraintValidator<PhoneValid, String> {
 
-    private final Pattern CHINA_PATTERN = Pattern.compile("^((13[0-9])|(14[0,1,4-9])|(15[0-3,5-9])|(16[2,5,6,7])|(17[0-8])|(18[0-9])|(19[0-3,5-9]))\\d{8}$");
+    private Pattern CHINA_PATTERN ;
 
     @Override
     public void initialize(PhoneValid phoneValid) {
-
+        this.CHINA_PATTERN = Pattern.compile(phoneValid.pattern());
     }
 
     @Override
