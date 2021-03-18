@@ -1,5 +1,8 @@
 package org.ipman.web.projects.user.web.controller;
 
+import org.eclipse.microprofile.config.Config;
+import org.ipman.web.configuration.microprofile.config.DefaultConfigProviderResolver;
+import org.ipman.web.configuration.microprofile.config.JavaConfig;
 import org.ipman.web.context.ComponentContext;
 import org.ipman.web.mvc.controller.PageController;
 import org.ipman.web.projects.user.domain.User;
@@ -37,6 +40,11 @@ public class UserController implements PageController {
 
         // 从 JNDI 容器中，获取 Component Context
         ComponentContext componentContext = ComponentContext.getInstance();
+
+        // 获取 Eclipse MicroProfile Config Source
+        DefaultConfigProviderResolver configProviderResolver = componentContext.getComponent("bean/DefaultConfigProviderResolver");
+        Config config = configProviderResolver.getConfig();
+        System.out.println(config.getValue("user.home", String.class));
 
         // 获取 委派 Validator
         DelegatingValidator delegatingValidator = componentContext.getComponent("bean/DelegatingValidator");

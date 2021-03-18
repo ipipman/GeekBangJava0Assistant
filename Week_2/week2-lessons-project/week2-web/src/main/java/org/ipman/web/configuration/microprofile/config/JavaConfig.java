@@ -48,9 +48,10 @@ public class JavaConfig implements Config {
 
     @Override
     public <T> T getValue(String propertyName, Class<T> propertyType) {
+
         String propertyValue = getPropertyValue(propertyName);
         // String 转换成目标类型
-        return null;
+        return (T) propertyValue;
     }
 
     /**

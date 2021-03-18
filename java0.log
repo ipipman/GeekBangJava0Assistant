@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-03-18T15:36:40</date>
-  <millis>1616053000423</millis>
+  <date>2021-03-18T18:01:33</date>
+  <millis>1616061693448</millis>
   <sequence>0</sequence>
   <logger>org.ipman</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>Hello, World</message>
 </record>
 <record>
-  <date>2021-03-18T15:36:40</date>
-  <millis>1616053000495</millis>
+  <date>2021-03-18T18:01:33</date>
+  <millis>1616061693572</millis>
   <sequence>1</sequence>
   <logger>org.ipman</logger>
   <level>WARNING</level>

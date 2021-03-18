@@ -51,4 +51,9 @@
               type="org.ipman.web.projects.user.validator.bean.validation.DelegatingValidator"
               factory="org.apache.naming.factory.BeanFactory"/>
 
+    <!-- Eclipse Micorprofile Config   -->
+    <Resource name="bean/DefaultConfigProviderResolver" auth="Container"
+              type="org.ipman.web.configuration.microprofile.config.DefaultConfigProviderResolver"
+              factory="org.apache.naming.factory.BeanFactory"/>
+
 </Context>

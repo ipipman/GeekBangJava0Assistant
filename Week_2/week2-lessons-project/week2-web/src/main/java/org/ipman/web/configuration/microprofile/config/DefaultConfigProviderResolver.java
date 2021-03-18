@@ -19,12 +19,19 @@ import java.util.ServiceLoader;
 
 // 自定义 配置 解析器
 public class DefaultConfigProviderResolver extends ConfigProviderResolver {
-    
 
+    private Config config;
+
+    // 将 Config 在 JNDI 容器中初始化
+    @PostConstruct
+    public void init() {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        config = getConfig(classLoader);
+    }
 
     @Override
     public Config getConfig() {
-        return null;
+        return config;
     }
 
     @Override

@@ -22,7 +22,6 @@ public class JavaSystemPropertiesConfigSource implements ConfigSource {
      */
     private final Map<String, String> properties;
 
-
     public JavaSystemPropertiesConfigSource() {
         Map systemProperties = System.getProperties();
         properties = new HashMap<>(systemProperties);
