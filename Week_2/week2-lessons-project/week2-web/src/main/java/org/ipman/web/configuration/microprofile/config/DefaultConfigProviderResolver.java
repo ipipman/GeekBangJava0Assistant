@@ -4,6 +4,7 @@ import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigBuilder;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
 
+import javax.annotation.PostConstruct;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
@@ -18,6 +19,8 @@ import java.util.ServiceLoader;
 
 // 自定义 配置 解析器
 public class DefaultConfigProviderResolver extends ConfigProviderResolver {
+    
+
 
     @Override
     public Config getConfig() {
