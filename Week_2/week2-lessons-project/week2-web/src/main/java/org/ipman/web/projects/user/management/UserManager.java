@@ -1,4 +1,4 @@
-package org.ipman.web.projects.user.manager;
+package org.ipman.web.projects.user.management;
 
 import org.ipman.web.projects.user.domain.User;
 
@@ -10,11 +10,11 @@ import org.ipman.web.projects.user.domain.User;
  * @Description: (用一句话描述该文件做什么)
  * @date 2021/3/18 6:18 下午
  */
-public class UserManager implements UserManagerMBean{
+public class UserManager implements UserManagerMBean {
 
     private final User user;
 
-    public UserManager(User user){
+    public UserManager(User user) {
         this.user = user;
     }
 

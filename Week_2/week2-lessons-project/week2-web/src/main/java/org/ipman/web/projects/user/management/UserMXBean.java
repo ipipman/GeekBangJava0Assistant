@@ -1,4 +1,4 @@
-package org.ipman.web.projects.user.manager;
+package org.ipman.web.projects.user.management;
 
 import javax.management.*;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class UserMXBean implements DynamicMBean {
     private Map<String, Object> attributes = new HashMap<>();
 
     /**
-     * 根据MBean的名称，获取 MBean 属性 
+     * 根据MBean的名称，获取 MBean 属性
      */
     @Override
     public Object getAttribute(String attribute) throws AttributeNotFoundException, MBeanException, ReflectionException {

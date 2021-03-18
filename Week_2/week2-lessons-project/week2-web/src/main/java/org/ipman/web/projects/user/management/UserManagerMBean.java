@@ -1,4 +1,4 @@
-package org.ipman.web.projects.user.manager;
+package org.ipman.web.projects.user.management;
 
 
 import org.ipman.web.projects.user.domain.User;
