@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.bottomlord</groupId>
-    <artifactId>user-platform</artifactId>
+    <artifactId>week3-lessons-project</artifactId>
     <name>User Platform ${revision}</name>
     <version>${revision}</version>
     <packaging>pom</packaging>
@@ -15,7 +15,7 @@
         <module>my-web-mvc</module>
         <module>user-web</module>
         <module>my-configuration</module>
-        <module>common</module>
+        <module>week3-common</module>
         <module>my-dependency-injection</module>
     </modules>
 
