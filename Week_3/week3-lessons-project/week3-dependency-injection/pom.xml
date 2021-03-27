@@ -11,12 +11,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>week3-dependency-injection</artifactId>
-    <name>my-dependency-injection framework ${revision}</name>
 
     <dependencies>
         <dependency>
             <groupId>com.bottomlord</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>week3-common</artifactId>
             <version>${revision}</version>
         </dependency>
 

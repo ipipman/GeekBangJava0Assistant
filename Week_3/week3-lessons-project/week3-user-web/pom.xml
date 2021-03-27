@@ -11,25 +11,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>week3-user-web</artifactId>
-    <name>user web app ${revision}</name>
     <packaging>war</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.bottomlord</groupId>
-            <artifactId>my-web-mvc</artifactId>
+            <artifactId>week3-web-mvc</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.bottomlord</groupId>
-            <artifactId>my-configuration</artifactId>
+            <artifactId>week3-configuration</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.bottomlord</groupId>
-            <artifactId>my-dependency-injection</artifactId>
+            <artifactId>week3-dependency-injection</artifactId>
             <version>${revision}</version>
         </dependency>
 
