@@ -1,0 +1,11 @@
+com.bottomlord.configuration.microprofile.config.converter.BigDecimalConverter
+com.bottomlord.configuration.microprofile.config.converter.BigIntegerConverter
+com.bottomlord.configuration.microprofile.config.converter.BooleanConverter
+com.bottomlord.configuration.microprofile.config.converter.ByteConverter
+com.bottomlord.configuration.microprofile.config.converter.CharacterConverter
+com.bottomlord.configuration.microprofile.config.converter.DoubleConverter
+com.bottomlord.configuration.microprofile.config.converter.FloatConverter
+com.bottomlord.configuration.microprofile.config.converter.IntegerConverter
+com.bottomlord.configuration.microprofile.config.converter.LongConverter
+com.bottomlord.configuration.microprofile.config.converter.ShortConverter
+com.bottomlord.configuration.microprofile.config.converter.StringConverter
