@@ -2,6 +2,7 @@ package org.ipman.web.projects.user.domain;
 
 import org.ipman.web.projects.user.validator.bean.validation.PhoneValid;
 
+
 import javax.persistence.*;
 import java.util.Objects;
 
