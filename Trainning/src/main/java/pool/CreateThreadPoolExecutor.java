@@ -39,7 +39,6 @@ public class CreateThreadPoolExecutor {
 
     }
 
-
     static class TaskCallable implements Callable<Object> {
         @Override
         public Object call() throws Exception {
@@ -54,7 +53,7 @@ public class CreateThreadPoolExecutor {
     public static ThreadPoolExecutor initThreadPoolExecutor() {
         int coreSize = 1;
         int maxSize = 1;
-        ArrayBlockingQueue<Runnable> taskQueue = new ArrayBlockingQueue(20);
+        BlockingQueue<Runnable> taskQueue = new ArrayBlockingQueue<Runnable>(20);
         CustomThreadFactory childThreadFactory = new CustomThreadFactory();
         RejectedExecutionHandler rejectedExecutionHandler = new ThreadPoolExecutor.AbortPolicy();
         return new ThreadPoolExecutor(
