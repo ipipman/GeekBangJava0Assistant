@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.ipman</groupId>
-    <artifactId>week2-lessons-project</artifactId>
-    <version>v1-SNAPSHOT</version>
+    <groupId>com.bottomlord</groupId>
+    <artifactId>week3-lessons-project</artifactId>
+    <version>v1</version>
   </parent>
-  <groupId>org.ipman</groupId>
-  <artifactId>week2-web-frame</artifactId>
-  <version>v1-SNAPSHOT</version>
+  <groupId>com.bottomlord</groupId>
+  <artifactId>week3-web-mvc</artifactId>
+  <version>v1</version>
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>

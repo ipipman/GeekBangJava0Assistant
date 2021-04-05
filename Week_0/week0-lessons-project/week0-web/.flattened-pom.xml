@@ -46,6 +46,7 @@
             </goals>
             <configuration>
               <path>/</path>
+              <enableNaming>true</enableNaming>
             </configuration>
           </execution>
         </executions>

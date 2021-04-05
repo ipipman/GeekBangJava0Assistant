@@ -3,26 +3,22 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.ipman</groupId>
-    <artifactId>week2-lessons-project</artifactId>
+    <groupId>org.geekbang.projects</groupId>
+    <artifactId>week4-lessons-project</artifactId>
     <version>v1-SNAPSHOT</version>
   </parent>
-  <groupId>org.ipman</groupId>
-  <artifactId>week2-web-frame</artifactId>
+  <groupId>org.geekbang.projects</groupId>
+  <artifactId>week4-dependency-injection</artifactId>
   <version>v1-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.target>8</maven.compiler.target>
+    <maven.compiler.source>8</maven.compiler.source>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>javax.ws.rs-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-lang</groupId>
-      <artifactId>commons-lang</artifactId>
     </dependency>
   </dependencies>
 </project>

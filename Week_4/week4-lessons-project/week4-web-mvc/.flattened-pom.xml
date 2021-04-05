@@ -3,12 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.ipman</groupId>
-    <artifactId>week2-lessons-project</artifactId>
+    <groupId>org.geekbang.projects</groupId>
+    <artifactId>week4-lessons-project</artifactId>
     <version>v1-SNAPSHOT</version>
   </parent>
-  <groupId>org.ipman</groupId>
-  <artifactId>week2-web-frame</artifactId>
+  <groupId>org.geekbang.projects</groupId>
+  <artifactId>week4-web-mvc</artifactId>
   <version>v1-SNAPSHOT</version>
   <dependencies>
     <dependency>

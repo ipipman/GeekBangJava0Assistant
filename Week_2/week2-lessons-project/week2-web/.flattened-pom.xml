@@ -4,17 +4,17 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.ipman</groupId>
-    <artifactId>week1-lessons-project</artifactId>
+    <artifactId>week2-lessons-project</artifactId>
     <version>v1-SNAPSHOT</version>
   </parent>
   <groupId>org.ipman</groupId>
-  <artifactId>week1-web</artifactId>
+  <artifactId>week2-web</artifactId>
   <version>v1-SNAPSHOT</version>
   <packaging>war</packaging>
   <dependencies>
     <dependency>
       <groupId>org.ipman</groupId>
-      <artifactId>week1-web-frame</artifactId>
+      <artifactId>week2-web-frame</artifactId>
       <version>${revision}</version>
     </dependency>
     <dependency>
@@ -39,7 +39,7 @@
       <artifactId>hibernate-entitymanager</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.hibernate.validator</groupId>
+      <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
     </dependency>
     <dependency>
@@ -51,6 +51,20 @@
       <groupId>org.glassfish</groupId>
       <artifactId>javax.el</artifactId>
       <version>3.0.1-b11</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.microprofile.config</groupId>
+      <artifactId>microprofile-config-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jolokia</groupId>
+      <artifactId>jolokia-core</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jolokia</groupId>
+      <artifactId>jolokia-client-java</artifactId>
+      <version>1.6.2</version>
     </dependency>
   </dependencies>
   <build>
