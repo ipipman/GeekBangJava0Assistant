@@ -6,7 +6,6 @@
 
     <groupId>org.geekbang.projects</groupId>
     <artifactId>user-platform</artifactId>
-    <name>User Platform ${revision}</name>
     <version>${revision}</version>
     <packaging>pom</packaging>
 

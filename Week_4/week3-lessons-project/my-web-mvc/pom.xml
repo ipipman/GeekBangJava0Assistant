@@ -11,7 +11,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>my-web-mvc</artifactId>
-    <name>My Web-MVC Framework ${revision}</name>
     <packaging>jar</packaging>
 
 
