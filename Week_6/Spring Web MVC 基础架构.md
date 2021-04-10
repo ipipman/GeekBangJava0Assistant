@@ -223,9 +223,7 @@ DelegatingWebMvcConfiguration 继承了 WebMvcConfigurationSupport
 
 #### 注解驱动
 
-<img src="https://tva1.sinaimg.cn/large/008eGmZEly1gpeyehc6zsj30vk0u0qum.jpg" align="left" style="zoom:30%;" />
-
-
+<img src="https://tva1.sinaimg.cn/large/008eGmZEly1gpeyehc6zsj30vk0u0qum.jpg" align="left" width="300" height="300" />
 
 
 
