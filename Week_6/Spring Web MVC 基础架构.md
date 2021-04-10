@@ -8,6 +8,8 @@
 
 
 
+
+
 #### 服务端试图渲染
 
 - 模版引擎
@@ -60,6 +62,8 @@ Spirng MVC  模式 -> MC， 对 V 不敏感
 #### SpringMVC 核心组件
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gpevv9dme4j31620s4h3s.jpg" style="zoom:50%;" align="left"/>
+
+
 
 
 
@@ -219,11 +223,13 @@ DelegatingWebMvcConfiguration 继承了 WebMvcConfigurationSupport
 
 里面定义了 HandlerAdpater Bean - RequestHandlerAdapter
 
- 
+
 
 #### 注解驱动
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gpeyehc6zsj30vk0u0qum.jpg" align="left" width="300" height="300" />
+
+
 
 
 
