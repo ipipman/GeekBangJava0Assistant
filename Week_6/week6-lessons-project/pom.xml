@@ -5,20 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.geekbang.projects</groupId>
-    <artifactId>user-platform</artifactId>
+    <artifactId>week6-lessons-project</artifactId>
     <name>User Platform ${revision}</name>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>my-web-mvc</module>
-        <module>user-web</module>
-        <module>my-configuration</module>
-        <module>my-dependency-injection</module>
-        <module>my-rest-client</module>
-        <module>my-reactive-messaging</module>
-        <module>my-cache</module>
-        <module>my-interceptor</module>
+        <module>week6-web-mvc</module>
+        <module>week6-web</module>
+        <module>week6-configuration</module>
+        <module>week6-dependency-injection</module>
+        <module>week6-rest-client</module>
+        <module>week6-reactive-messaging</module>
+        <module>week6-cache</module>
+        <module>week6-interceptor</module>
     </modules>
 
     <properties>
