@@ -4,27 +4,32 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.geekbang.projects</groupId>
-    <artifactId>week4-lessons-project</artifactId>
+    <artifactId>week6-lessons-project</artifactId>
     <version>v1-SNAPSHOT</version>
   </parent>
   <groupId>org.geekbang.projects</groupId>
-  <artifactId>week4-user-web</artifactId>
+  <artifactId>week6-web</artifactId>
   <version>v1-SNAPSHOT</version>
   <packaging>war</packaging>
   <dependencies>
     <dependency>
       <groupId>org.geekbang.projects</groupId>
-      <artifactId>week4-web-mvc</artifactId>
+      <artifactId>week6-web-mvc</artifactId>
       <version>${revision}</version>
     </dependency>
     <dependency>
       <groupId>org.geekbang.projects</groupId>
-      <artifactId>week4-configuration</artifactId>
+      <artifactId>week6-configuration</artifactId>
       <version>${revision}</version>
     </dependency>
     <dependency>
       <groupId>org.geekbang.projects</groupId>
-      <artifactId>week4-dependency-injection</artifactId>
+      <artifactId>week6-dependency-injection</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.geekbang.projects</groupId>
+      <artifactId>week6-cache</artifactId>
       <version>${revision}</version>
     </dependency>
     <dependency>
