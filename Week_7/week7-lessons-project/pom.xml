@@ -5,8 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.geekbang.projects</groupId>
-    <artifactId>user-platform</artifactId>
-    <name>User Platform ${revision}</name>
+    <artifactId>week7-lessons-project</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
