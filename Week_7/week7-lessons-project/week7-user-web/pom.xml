@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>user-web</artifactId>
+    <artifactId>week7-user-web</artifactId>
     <packaging>war</packaging>
 
 
@@ -28,25 +28,25 @@
 
         <dependency>
             <groupId>org.geekbang.projects</groupId>
-            <artifactId>my-web-mvc</artifactId>
+            <artifactId>week7-web-mvc</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>org.geekbang.projects</groupId>
-            <artifactId>my-configuration</artifactId>
+            <artifactId>week7-configuration</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>org.geekbang.projects</groupId>
-            <artifactId>my-dependency-injection</artifactId>
+            <artifactId>week7-dependency-injection</artifactId>
             <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>org.geekbang.projects</groupId>
-            <artifactId>my-cache</artifactId>
+            <artifactId>week7-cache</artifactId>
             <version>${revision}</version>
         </dependency>
 

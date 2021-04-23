@@ -10,15 +10,15 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>my-web-mvc</module>
-        <module>user-web</module>
-        <module>my-configuration</module>
-        <module>my-dependency-injection</module>
-        <module>my-rest-client</module>
-        <module>my-reactive-messaging</module>
-        <module>my-cache</module>
-        <module>my-interceptor</module>
-        <module>user-data</module>
+        <module>week7-web-mvc</module>
+        <module>week7-user-web</module>
+        <module>week7-configuration</module>
+        <module>week7-dependency-injection</module>
+        <module>week7-rest-client</module>
+        <module>week7-reactive-messaging</module>
+        <module>week7-cache</module>
+        <module>week7-interceptor</module>
+        <module>week7-user-data</module>
     </modules>
 
     <properties>
