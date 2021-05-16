@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.geektimes.projects.user.repository.mapper.UserMapper">
+
+    <update id="dropTable">
+        DROP TABLE users
+    </update>
+
+    <update id="createTable">
+        CREATE TABLE users(
+        id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+        name VARCHAR(16) NOT NULL,
+        password VARCHAR(64) NOT NULL,
+        email VARCHAR(64) NOT NULL,
+        phone_number VARCHAR(32) NOT NULL)
+    </update>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="user">
+        INSERT INTO users(name,password,email,phone_number)
+        VALUES (#{user.name},#{user.password},#{user.email},#{user.phoneNumber})
+    </insert>
+
+    <select id="selectById" resultType="user">
+        SELECT id,name,password,email,phone_number FROM users WHERE id= #{userId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM users WHERE id= #{userId,jdbcType=BIGINT}
+    </delete>
+
+</mapper>
