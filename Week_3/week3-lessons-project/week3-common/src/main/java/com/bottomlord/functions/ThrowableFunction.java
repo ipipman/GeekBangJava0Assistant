@@ -10,6 +10,7 @@ public interface ThrowableFunction<IN, OUT> {
      * applies the function to the given arguments
      * @param in the function argument
      * @return result
+     *
      * @throws Throwable Throwable if met with any error
      */
     OUT apply(IN in) throws Throwable;
